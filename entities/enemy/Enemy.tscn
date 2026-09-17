@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ok2cdgauboon"]
+
+[ext_resource type="Script" uid="uid://c5ubau815sqlk" path="res://entities/enemy/Enemy.cs" id="1_b0cr2"]
+
+[node name="Enemy" type="ColorRect" unique_id=806686202]
+custom_minimum_size = Vector2(10, 10)
+script = ExtResource("1_b0cr2")

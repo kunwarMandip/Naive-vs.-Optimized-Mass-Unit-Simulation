@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Naive vs. Optimized Mass-Unit Simulation"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://ckssnpx15p53g"
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="Naive vs. Optimized Mass-Unit Simulation"
 
 [physics]
 
