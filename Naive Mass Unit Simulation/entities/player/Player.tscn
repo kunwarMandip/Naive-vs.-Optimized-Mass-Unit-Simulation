@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckssnpx15p53g"]
 
-[ext_resource type="Script" uid="uid://dam346yadh51s" path="res://entities/player/Player.cs" id="1_mab2k"]
+[ext_resource type="Script" uid="uid://dam346yadh51s" path="res://Naive Mass Unit Simulation/entities/player/Player.cs" id="1_mab2k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mab2k"]
 

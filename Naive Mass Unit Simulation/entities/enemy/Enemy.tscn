@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ok2cdgauboon"]
 
-[ext_resource type="Script" uid="uid://c5ubau815sqlk" path="res://entities/enemy/Enemy.cs" id="1_b0cr2"]
+[ext_resource type="Script" uid="uid://c5ubau815sqlk" path="res://Naive Mass Unit Simulation/entities/enemy/Enemy.cs" id="1_b0cr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0cr2"]
 size = Vector2(5, 5)

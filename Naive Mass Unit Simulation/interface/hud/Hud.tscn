@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bj0wpwriwyj8o"]
 
-[ext_resource type="Script" uid="uid://dh0ai5hj8s84t" path="res://interface/hud/Hud.cs" id="1_h0r50"]
+[ext_resource type="Script" uid="uid://dh0ai5hj8s84t" path="res://Naive Mass Unit Simulation/interface/hud/Hud.cs" id="1_h0r50"]
 
 [node name="Hud" type="Node" unique_id=1443699989]
 script = ExtResource("1_h0r50")

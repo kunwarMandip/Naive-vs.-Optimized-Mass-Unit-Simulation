@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d4flg2d26jb3s"]
 
-[ext_resource type="PackedScene" uid="uid://ok2cdgauboon" path="res://entities/enemy/Enemy.tscn" id="1_1tnoa"]
-[ext_resource type="Script" uid="uid://dw15l71t5wy7k" path="res://world/World.cs" id="1_5hvw7"]
-[ext_resource type="PackedScene" uid="uid://ckssnpx15p53g" path="res://entities/player/Player.tscn" id="2_qcaji"]
-[ext_resource type="Script" uid="uid://b8ii2y5y3rrqw" path="res://world/EnemySpawner.cs" id="4_0wlj7"]
-[ext_resource type="PackedScene" uid="uid://bj0wpwriwyj8o" path="res://interface/hud/Hud.tscn" id="4_ahhnx"]
+[ext_resource type="PackedScene" uid="uid://ok2cdgauboon" path="res://Naive Mass Unit Simulation/entities/enemy/Enemy.tscn" id="1_1tnoa"]
+[ext_resource type="Script" uid="uid://dw15l71t5wy7k" path="res://Naive Mass Unit Simulation/world/World.cs" id="1_5hvw7"]
+[ext_resource type="PackedScene" uid="uid://ckssnpx15p53g" path="res://Naive Mass Unit Simulation/entities/player/Player.tscn" id="2_qcaji"]
+[ext_resource type="Script" uid="uid://b8ii2y5y3rrqw" path="res://Naive Mass Unit Simulation/world/EnemySpawner.cs" id="4_0wlj7"]
+[ext_resource type="PackedScene" uid="uid://bj0wpwriwyj8o" path="res://Naive Mass Unit Simulation/interface/hud/Hud.tscn" id="4_ahhnx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wlj7"]
 size = Vector2(1000, 20)
