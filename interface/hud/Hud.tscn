@@ -4,34 +4,42 @@
 
 [node name="Hud" type="Node" unique_id=1443699989]
 script = ExtResource("1_h0r50")
-FpsLabelPath = NodePath("MarginContainer/VBoxContainer/FpsLabelPath")
-CountLabelPath = NodePath("MarginContainer/VBoxContainer/CountLabelPath")
+FpsLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/FpsLabelPath")
+CountLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/CountLabelPath")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1586410273]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -53.5
+offset_right = 132.0
+offset_bottom = 53.5
 grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 4
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1206259089]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=33108131]
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 10
+color = Color(0.6433103, 0.119757615, 0.34748718, 1)
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer" unique_id=200175338]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=231710092]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 
-[node name="FpsLabelPath" type="Label" parent="MarginContainer/VBoxContainer" unique_id=449848111]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1206259089]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="FpsLabelPath" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=449848111]
 layout_mode = 2
 text = "Test"
 
-[node name="CountLabelPath" type="Label" parent="MarginContainer/VBoxContainer" unique_id=334026453]
+[node name="CountLabelPath" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=334026453]
 layout_mode = 2
 text = "Test"

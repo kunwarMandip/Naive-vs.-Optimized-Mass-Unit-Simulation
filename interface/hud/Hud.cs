@@ -9,20 +9,19 @@ public partial class Hud : Node
 	
 	private Label _fpsLabel;
 	private Label _countLabel;
-	//private Spawner _spawner;
-	
+	private EnemySpawner _spawner;
 	
 	public override void _Ready()
 	{
 		_fpsLabel = GetNode<Label>(FpsLabelPath);
 		_countLabel = GetNode<Label>(CountLabelPath);
-		//_spawner = GetNode<Spawner>(SpawnerPath);
+		_spawner = GetNode<EnemySpawner>(SpawnerPath);
 	}
 	
 	public override void _Process(double delta)
 	{
 		_fpsLabel.Text = $"FPS: {Engine.GetFramesPerSecond()}";
-		//_countLabel.Text = $"Enemies: {_spawner.TotalSpawned}";
+		_countLabel.Text = $"Enemies: {_spawner.TotalSpawned}";
 	}
 	
 }

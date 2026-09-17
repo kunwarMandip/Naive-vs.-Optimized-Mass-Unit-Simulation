@@ -24,12 +24,13 @@ script = ExtResource("1_5hvw7")
 [node name="Player" parent="." unique_id=1646686081 instance=ExtResource("2_qcaji")]
 position = Vector2(176, 69)
 
+[node name="EnemyContainer" type="Node2D" parent="." unique_id=1329906797]
+
 [node name="EnemySpawner" type="Node" parent="." unique_id=1159031628]
 script = ExtResource("4_0wlj7")
 EnemyScene = ExtResource("1_1tnoa")
 EnemyContainerPath = NodePath("../EnemyContainer")
-
-[node name="EnemyContainer" type="Node2D" parent="." unique_id=1329906797]
+SpawnAreasPath = NodePath("../EnemySpawnAreas")
 
 [node name="EnemySpawnAreas" type="Node2D" parent="." unique_id=952512221]
 metadata/_edit_group_ = true
@@ -73,3 +74,4 @@ color = Color(0.038780853, 0.0068532927, 0.00083526253, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=909589406]
 
 [node name="Hud" parent="CanvasLayer" unique_id=1443699989 instance=ExtResource("4_ahhnx")]
+SpawnerPath = NodePath("../../EnemySpawner")

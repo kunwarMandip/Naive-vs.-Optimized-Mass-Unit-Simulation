@@ -4,18 +4,20 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	[Export] public float Speed = 300f;
-	private Node2D _player;
+	private CharacterBody2D _player;
 	
 	public override void _Ready()
 	{
-		_player = GetTree().GetFirstNodeInGroup("player") as Node2D;
+		_player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 	}
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_player == null) return;
-		Vector2 direction = (_player.GlobalPosition - GlobalPosition).Normalized();
-		Velocity = direction * Speed;
+		if (_player == null){
+			GD.Print("Enemy Null");
+			return;
+		} 
+		Velocity = (_player.GlobalPosition - GlobalPosition).Normalized() * Speed;
 		MoveAndSlide();
 	}
 }
