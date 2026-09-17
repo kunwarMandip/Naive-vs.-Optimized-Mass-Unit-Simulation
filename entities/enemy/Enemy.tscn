@@ -2,6 +2,19 @@
 
 [ext_resource type="Script" uid="uid://c5ubau815sqlk" path="res://entities/enemy/Enemy.cs" id="1_b0cr2"]
 
-[node name="Enemy" type="ColorRect" unique_id=806686202]
-custom_minimum_size = Vector2(10, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0cr2"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=982803837]
+collision_layer = 2
 script = ExtResource("1_b0cr2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1062050348]
+shape = SubResource("RectangleShape2D_b0cr2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=806686202]
+custom_minimum_size = Vector2(20, 20)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.33000517, 0.00045242906, 0.9487843, 1)
