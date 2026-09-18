@@ -4,8 +4,9 @@
 
 [node name="Hud" type="Node" unique_id=1443699989]
 script = ExtResource("1_tvwbu")
-FpsLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/FpsLabelPath")
-CountLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/CountLabelPath")
+FpsLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/FpsLabel")
+CountLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/CountLabel")
+HealthLabelPath = NodePath("MarginContainer/MarginContainer/VBoxContainer/HealthLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1586410273]
 anchors_preset = 4
@@ -36,10 +37,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
-[node name="FpsLabelPath" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=449848111]
+[node name="FpsLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=449848111]
 layout_mode = 2
 text = "Test"
 
-[node name="CountLabelPath" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=334026453]
+[node name="CountLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=334026453]
+layout_mode = 2
+text = "Test"
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1600033943]
 layout_mode = 2
 text = "Test"

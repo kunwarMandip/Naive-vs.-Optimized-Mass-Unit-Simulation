@@ -52,13 +52,13 @@ shape = SubResource("RectangleShape2D_ahhnx")
 [node name="EnemyMultiMesh" type="MultiMeshInstance2D" parent="." unique_id=350794366]
 
 [node name="EnemyManager" parent="." unique_id=428296130 instance=ExtResource("3_hqgr5")]
-MultiMeshInstancePath = NodePath("../EnemyMultiMesh")
-SpawnAreasPath = NodePath("../EnemySpawnAreas")
 PlayerPath = NodePath("../Player")
+SpawnAreasPath = NodePath("../EnemySpawnAreas")
+MultiMeshInstancePath = NodePath("../EnemyMultiMesh")
 BatchGrowth = 500
-MaxAgents = 500000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1746683552]
 
 [node name="Hud" parent="CanvasLayer" unique_id=1443699989 instance=ExtResource("4_hqgr5")]
 EnemyManagerPath = NodePath("../../EnemyManager")
+PlayerPath = NodePath("../../Player")
