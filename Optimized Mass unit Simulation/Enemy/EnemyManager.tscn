@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bs8qv5mrt7c7"]
+
+[ext_resource type="Script" uid="uid://d4fk2t3gsamqm" path="res://Optimized Mass unit Simulation/Enemy/EnemyManager.cs" id="1_h2nq8"]
+
+[node name="EnemyManager" type="Node" unique_id=428296130]
+script = ExtResource("1_h2nq8")

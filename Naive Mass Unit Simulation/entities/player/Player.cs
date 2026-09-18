@@ -5,7 +5,6 @@ public partial class Player : CharacterBody2D
 {
 	[Export] public float Speed = 300f;
 	
-	
 	public override void _Ready()
 	{
 		AddToGroup("player");

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cmevam478lepp"]
+
+[ext_resource type="PackedScene" uid="uid://ckssnpx15p53g" path="res://Naive Mass Unit Simulation/entities/player/Player.tscn" id="2_d73lj"]
+[ext_resource type="PackedScene" uid="uid://bs8qv5mrt7c7" path="res://Optimized Mass unit Simulation/Enemy/EnemyManager.tscn" id="3_hqgr5"]
+[ext_resource type="PackedScene" uid="uid://d1ytu5t5n2djs" path="res://Optimized Mass unit Simulation/hud/OptimizedHud.tscn" id="4_hqgr5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wlj7"]
+size = Vector2(1000, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dodpj"]
+size = Vector2(20, 608)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txrfu"]
+size = Vector2(20, 608)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhnx"]
+size = Vector2(1000, 20)
+
+[node name="World" type="Node2D" unique_id=950412210]
+
+[node name="Player" parent="." unique_id=1646686081 instance=ExtResource("2_d73lj")]
+position = Vector2(176, 69)
+
+[node name="EnemySpawnAreas" type="Node2D" parent="." unique_id=952512221]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="SpawnAreaTop" type="Area2D" parent="EnemySpawnAreas" unique_id=549567954]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnAreas/SpawnAreaTop" unique_id=660551508]
+position = Vector2(576, 20)
+shape = SubResource("RectangleShape2D_0wlj7")
+
+[node name="SpawnAreaLeft" type="Area2D" parent="EnemySpawnAreas" unique_id=444163885]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnAreas/SpawnAreaLeft" unique_id=1998191739]
+position = Vector2(20, 324)
+shape = SubResource("RectangleShape2D_dodpj")
+
+[node name="SpawnAreaRight" type="Area2D" parent="EnemySpawnAreas" unique_id=1172929394]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnAreas/SpawnAreaRight" unique_id=775763838]
+position = Vector2(1132, 324)
+shape = SubResource("RectangleShape2D_txrfu")
+
+[node name="SpawnAreaBottom" type="Area2D" parent="EnemySpawnAreas" unique_id=976426340]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnAreas/SpawnAreaBottom" unique_id=2027338143]
+position = Vector2(576, 628)
+shape = SubResource("RectangleShape2D_ahhnx")
+
+[node name="EnemyMultiMesh" type="MultiMeshInstance2D" parent="." unique_id=350794366]
+
+[node name="EnemyManager" parent="." unique_id=428296130 instance=ExtResource("3_hqgr5")]
+MultiMeshInstancePath = NodePath("../EnemyMultiMesh")
+SpawnAreasPath = NodePath("../EnemySpawnAreas")
+PlayerPath = NodePath("../Player")
+BatchGrowth = 500
+MaxAgents = 500000
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1746683552]
+
+[node name="Hud" parent="CanvasLayer" unique_id=1443699989 instance=ExtResource("4_hqgr5")]
+EnemyManagerPath = NodePath("../../EnemyManager")
