@@ -1,48 +1,42 @@
 using Godot;
 using System.Collections.Generic;
 
-public partial class EnemyManager : Node
+public partial class OrcManager : Node, IEnemyCountProvider
 {
-	
 	[Export] public NodePath PlayerPath;
 	[Export] public NodePath SpawnAreasPath;
 	[Export] public NodePath MultiMeshInstancePath;
-	
-	[Export] public float Speed = 150f;
-	[Export] public float AttackRange = 20f;
-	[Export] public float AttackInterval = 1f;
-	[Export] public int AttackDamage = 5;
-	
-	[Export] public float SpawnInterval = 0.5f;
-	[Export] public int MaxEnemySpawnable = 50000;
+
+	[Export] public float MovementSpeed = 150f;
 	
 	[Export] public int BatchGrowth = 50;
 	[Export] public int InstanceSize = 16;
 	[Export] public int InitialBatchSize = 50;
+	[Export] public float SpawnInterval = 0.5f;
+	[Export] public int MaxEnemySpawnable = 50000;
 	
 	private MultiMeshInstance2D _multiMeshInstance;
 	private MultiMesh _multiMesh;
 	private Player _player;
 	private readonly List<Area2D> _spawnAreas = new();
-
-	private Vector2[] _positions;
-	private bool[] _isAttacking;
-	private float[] _attackTimers;
-	private int _count;
+	
+	private Vector2[] _orcPositions;
+	private float[] _orcHealths;
+	
+	private int _activeOrcCount;
 	private float _timer;
 	private int _batchSize;
 
-	public int TotalSpawned => _count;
-	
+	public int TotalSpawned => _activeOrcCount;
+
 	public override void _Ready()
 	{
 		_multiMeshInstance = GetNode<MultiMeshInstance2D>(MultiMeshInstancePath);
 		_player = GetNode<Player>(PlayerPath);
 		_batchSize = InitialBatchSize;
-		_positions = new Vector2[MaxEnemySpawnable];
-		_isAttacking = new bool[MaxEnemySpawnable];
-		_attackTimers = new float[MaxEnemySpawnable];
-
+		
+		_orcPositions = new Vector2[MaxEnemySpawnable];
+		_orcHealths = new float[MaxEnemySpawnable];
 		var areasNode = GetNode(SpawnAreasPath);
 		foreach (Node child in areasNode.GetChildren())
 		{
@@ -52,6 +46,7 @@ public partial class EnemyManager : Node
 
 		SetupMultiMesh();
 	}
+
 	
 	private void SetupMultiMesh()
 	{
@@ -68,11 +63,11 @@ public partial class EnemyManager : Node
 		};
 		_multiMeshInstance.Multimesh = _multiMesh;
 
-		var hidden = new Transform2D(Vector2.Zero, Vector2.Zero, Vector2.Zero);
+		var unspawned_orcs = new Transform2D(Vector2.Zero, Vector2.Zero, Vector2.Zero);
 		for (int i = 0; i < MaxEnemySpawnable; i++)
-			_multiMesh.SetInstanceTransform2D(i, hidden);
+			_multiMesh.SetInstanceTransform2D(i, unspawned_orcs);
 	}
-
+	
 	public override void _Process(double delta)
 	{
 		_timer += (float)delta;
@@ -85,62 +80,32 @@ public partial class EnemyManager : Node
 
 		UpdateEnemies((float)delta);
 	}
-
-	private void SpawnBatch(int count)
+	
+	
+	private void SpawnBatch(int numOfOrcToSpawn)
 	{
-		for (int i = 0; i < count && _count < MaxEnemySpawnable; i++)
+		for (int i = 0; i < numOfOrcToSpawn && _activeOrcCount < MaxEnemySpawnable; i++)
 		{
 			var area = _spawnAreas[GD.RandRange(0, _spawnAreas.Count - 1)];
-			_positions[_count] = RandomPointInArea(area);
-			_isAttacking[_count] = false;
-			_attackTimers[_count] = 0f;
-			_multiMesh.SetInstanceColor(_count, Colors.Red);
-			_count++;
+			_orcPositions[_activeOrcCount] = RandomPointInArea(area);
+			_multiMesh.SetInstanceColor(_activeOrcCount, Colors.Red);
+			_activeOrcCount++;
 		}
 	}
-
+	
 	private void UpdateEnemies(float delta)
 	{
 		Vector2 playerPos = _player.GlobalPosition;
-		int pendingDamage = 0;
-
-		for (int i = 0; i < _count; i++)
+		
+		for (int i = 0; i < _activeOrcCount; i++)
 		{
-			Vector2 toPlayer = playerPos - _positions[i];
+			Vector2 toPlayer = playerPos - _orcPositions[i];
 			float distance = toPlayer.Length();
-
-			if (distance <= AttackRange)
-			{
-				if (!_isAttacking[i])
-				{
-					_isAttacking[i] = true;
-					_multiMesh.SetInstanceColor(i, Colors.Orange);
-				}
-
-				_attackTimers[i] += delta;
-				if (_attackTimers[i] >= AttackInterval)
-				{
-					_attackTimers[i] = 0f;
-					pendingDamage += AttackDamage;
-				}
-			}
-			else
-			{
-				if (_isAttacking[i])
-				{
-					_isAttacking[i] = false;
-					_multiMesh.SetInstanceColor(i, Colors.Red);
-				}
-				_positions[i] += toPlayer.Normalized() * Speed * delta;
-			}
-
-			_multiMesh.SetInstanceTransform2D(i, new Transform2D(0f, _positions[i]));
+			_orcPositions[i] += toPlayer.Normalized() * MovementSpeed * delta;
+			_multiMesh.SetInstanceTransform2D(i, new Transform2D(0f, _orcPositions[i]));
 		}
-
-		if (pendingDamage > 0)
-			_player.TakeDamage(pendingDamage);
 	}
-
+	
 	private Vector2 RandomPointInArea(Area2D area)
 	{
 		var shape = area.GetNode<CollisionShape2D>("CollisionShape2D");
@@ -151,4 +116,5 @@ public partial class EnemyManager : Node
 		float y = (float)GD.RandRange(center.Y - extents.Y, center.Y + extents.Y);
 		return new Vector2(x, y);
 	}
+
 }

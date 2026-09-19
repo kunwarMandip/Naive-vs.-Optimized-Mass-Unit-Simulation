@@ -4,3 +4,4 @@
 
 [node name="EnemyManager" type="Node" unique_id=428296130]
 script = ExtResource("1_h2nq8")
+MultiMeshInstancePath = NodePath("")

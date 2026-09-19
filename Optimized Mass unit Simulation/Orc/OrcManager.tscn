@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dubj3itjw0rb6"]
+
+[ext_resource type="Script" uid="uid://bmygfd1p5raev" path="res://Optimized Mass unit Simulation/Orc/OrcManager.cs" id="1_77ae6"]
+
+[node name="OrcManager" type="Node" unique_id=638971672]
+script = ExtResource("1_77ae6")
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="." unique_id=1656588081]
